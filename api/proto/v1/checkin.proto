@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package checkin;
+
+option go_package = "ori/microservice";
+
+message CheckInRequest {
+    string user_id = 1;
+    
+    message Location {
+        float longitude = 1;
+        float latitude = 2;
+    }
+
+    Location location = 2;
+    string timestamp = 3;
+
+    message Venue {
+        string Name = 1;
+    }
+    Venue venue = 4;
+    repeated string friends_with = 5;
+}
+
+message CheckInResponse {
+
+}
+
+service Checkin {
+    rpc UserCheckIn (CheckInRequest) returns (CheckInResponse);
+}
