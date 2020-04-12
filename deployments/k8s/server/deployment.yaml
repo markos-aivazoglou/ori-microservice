@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: location-checkin
+  labels:
+    app: ori-location-checkin
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ori-location-checkin
+  template:
+    metadata:
+      labels:
+        app: ori-location-checkin
+      # annotations:
+      #   prometheus.io/scrape: "true"
+      #   prometheus.io/port: "8080"
+    spec:
+      containers:
+        - name: location-checkin
+          image: ori-service/location-checkin:latest
+          imagePullPolicy: Never
+          # volumeMounts:
+          #   - name: sa-volume
+          #     readOnly: true
+          #     mountPath: "/service-accounts"
+          envFrom:
+            - configMapRef:
+                name: cis-server-config
+            # - secretRef:
+            #     name: wsm-aws
+            # - secretRef:
+            #     name: wsm-mongo
+            # - secretRef:
+            #     name: wsm-postgres
+      # volumes:
+      #   - name: sa-volume
+      #     secret:
+      #       secretName: wsm-sa
+      #   - name: cloudsql-instance-credentials
+      #     secret:
+      #       secretName: cloudsql-instance-credentials

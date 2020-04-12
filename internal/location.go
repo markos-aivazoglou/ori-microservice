@@ -10,8 +10,8 @@ type Venue struct {
 }
 
 type UserRepository interface {
-	GetUser(uid UserID) (User, error)
-	Store(u User) error
+	GetUser(uid UserID) (*User, error)
+	Store(u *User) error
 }
 
 type UserID string
@@ -21,11 +21,28 @@ type User struct {
 	Checkins Checkins
 }
 
-func (u *User) CheckIn(e CheckinEntry) {
+func (u *User) CheckIn(e *CheckinEntry) {
 	u.Checkins = append(u.Checkins, e)
 }
 
-type Checkins []CheckinEntry
+func (u User) LastCheckIn() CheckinEntry {
+	return *u.Checkins[len(u.Checkins)-1]
+}
+
+func (u User) UniqueVenues() []Venue {
+	m := make(map[Venue]struct{})
+	venues := []Venue{}
+	for _, v := range u.Checkins {
+		if _, ok := m[v.Venue]; !ok {
+			venues = append(venues, v.Venue)
+			m[v.Venue] = struct{}{}
+		}
+	}
+	return venues
+
+}
+
+type Checkins []*CheckinEntry
 
 type CheckinEntry struct {
 	Location Location

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cis-server-config
+  labels:
+    app: location-checkin-service
+data:
+  CIS_DEBUG: "false"
+  CIS_GRPC_PORT: "7777"

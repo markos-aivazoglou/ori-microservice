@@ -1,5 +1,7 @@
 package checkin
 
+import "log"
+
 type CheckinService struct {
 	userRepository UserRepository
 	// maybe add an event store here
@@ -25,7 +27,7 @@ func (c *CheckinService) UserCheckIn(d CheckInData) error {
 	}
 
 	user.CheckIn(
-		CheckinEntry{
+		&CheckinEntry{
 			Location: d.Location,
 			Venue:    d.Venue,
 			With:     d.Friends,
@@ -35,6 +37,8 @@ func (c *CheckinService) UserCheckIn(d CheckInData) error {
 	if err != nil {
 		return err
 	}
+	log.Printf("check in for user %s created", user.UserID)
+	log.Printf("most recent checkin %v", user.LastCheckIn())
 	// publish event or something
 	return nil
 }

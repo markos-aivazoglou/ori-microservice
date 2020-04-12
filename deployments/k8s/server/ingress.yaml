@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ori-ingress
+  namespace: default
+spec:
+    backend:
+        serviceName: location-checkin-service
+        servicePort: 8888
+    rules:
+    - host: egw.ei-staff.com
+      http:
+        paths:
+        - path: /*
+          backend:
+            serviceName: nginx-np
+            servicePort: 8000

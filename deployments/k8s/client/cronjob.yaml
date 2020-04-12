@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ori-checkin-client
+spec:
+  template:
+    spec:
+      containers:
+        - name: checkin-service-client
+          image: ori-service/location-checkin-client
+          imagePullPolicy: Never
+          command: ["/ori-client"]
+          volumeMounts:
+          envFrom:
+          - configMapRef:
+              name: cis-client-config
+      restartPolicy: Never

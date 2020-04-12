@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+      app: ori-location-checkin
+  name: location-checkin-service
+spec:
+  ports:
+      - name: "checkin-service-port"
+        port: 7777
+  selector:
+    app: ori-location-checkin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+      app: ori-location-checkin
+  name: location-checkin-nodeport-service
+spec:
+  ports:
+      - name: "checkin-service-nodeport-port"
+        port: 8888
+  selector:
+    app: ori-location-checkin

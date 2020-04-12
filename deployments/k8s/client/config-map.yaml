@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cis-client-config
+  labels:
+    app: location-checkin-service
+data:
+  CIS_DEBUG: "false"
+  CIS_CHECKIN_SERVICE_NAME: "location-checkin-service"
+  CIS_CHECKIN_SERVICE_PORT: "7777"
