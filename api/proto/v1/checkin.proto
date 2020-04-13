@@ -4,7 +4,7 @@ package checkin;
 
 option go_package = "ori/microservice";
 
-message CheckInRequest {
+message CheckInUserRequest {
     string user_id = 1;
     
     message Location {
@@ -16,16 +16,37 @@ message CheckInRequest {
     string timestamp = 3;
 
     message Venue {
-        string Name = 1;
+        string name = 1;
     }
     Venue venue = 4;
     repeated string friends_with = 5;
 }
 
-message CheckInResponse {
+message CheckInUserResponse {
+    string user_id = 1;
+    string venue_name = 2;
+    int32 friends_count = 3;
+}
 
+message GetCheckedInVenuesRequest {
+    string user_id = 1;
+}
+
+message GetCheckedInVenuesResponse {
+
+    message Venue {
+        string name = 1;
+        message Location {
+            float longitude = 1;
+            float latitude = 2;
+        }
+        Location location = 2;
+    }
+
+    repeated Venue venue = 1;
 }
 
 service Checkin {
-    rpc UserCheckIn (CheckInRequest) returns (CheckInResponse);
+    rpc CheckInUser (CheckInUserRequest) returns (CheckInUserResponse);
+    rpc GetCheckedInVenues(GetCheckedInVenuesRequest) returns (GetCheckedInVenuesResponse);
 }

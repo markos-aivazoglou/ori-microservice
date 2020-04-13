@@ -24,78 +24,78 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type CheckInRequest struct {
-	UserId               string                   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Location             *CheckInRequest_Location `protobuf:"bytes,2,opt,name=location,proto3" json:"location,omitempty"`
-	Timestamp            string                   `protobuf:"bytes,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	Venue                *CheckInRequest_Venue    `protobuf:"bytes,4,opt,name=venue,proto3" json:"venue,omitempty"`
-	FriendsWith          []string                 `protobuf:"bytes,5,rep,name=friends_with,json=friendsWith,proto3" json:"friends_with,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                 `json:"-"`
-	XXX_unrecognized     []byte                   `json:"-"`
-	XXX_sizecache        int32                    `json:"-"`
+type CheckInUserRequest struct {
+	UserId               string                       `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Location             *CheckInUserRequest_Location `protobuf:"bytes,2,opt,name=location,proto3" json:"location,omitempty"`
+	Timestamp            string                       `protobuf:"bytes,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Venue                *CheckInUserRequest_Venue    `protobuf:"bytes,4,opt,name=venue,proto3" json:"venue,omitempty"`
+	FriendsWith          []string                     `protobuf:"bytes,5,rep,name=friends_with,json=friendsWith,proto3" json:"friends_with,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                     `json:"-"`
+	XXX_unrecognized     []byte                       `json:"-"`
+	XXX_sizecache        int32                        `json:"-"`
 }
 
-func (m *CheckInRequest) Reset()         { *m = CheckInRequest{} }
-func (m *CheckInRequest) String() string { return proto.CompactTextString(m) }
-func (*CheckInRequest) ProtoMessage()    {}
-func (*CheckInRequest) Descriptor() ([]byte, []int) {
+func (m *CheckInUserRequest) Reset()         { *m = CheckInUserRequest{} }
+func (m *CheckInUserRequest) String() string { return proto.CompactTextString(m) }
+func (*CheckInUserRequest) ProtoMessage()    {}
+func (*CheckInUserRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_7313afa335dc5440, []int{0}
 }
 
-func (m *CheckInRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CheckInRequest.Unmarshal(m, b)
+func (m *CheckInUserRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CheckInUserRequest.Unmarshal(m, b)
 }
-func (m *CheckInRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CheckInRequest.Marshal(b, m, deterministic)
+func (m *CheckInUserRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CheckInUserRequest.Marshal(b, m, deterministic)
 }
-func (m *CheckInRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CheckInRequest.Merge(m, src)
+func (m *CheckInUserRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CheckInUserRequest.Merge(m, src)
 }
-func (m *CheckInRequest) XXX_Size() int {
-	return xxx_messageInfo_CheckInRequest.Size(m)
+func (m *CheckInUserRequest) XXX_Size() int {
+	return xxx_messageInfo_CheckInUserRequest.Size(m)
 }
-func (m *CheckInRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CheckInRequest.DiscardUnknown(m)
+func (m *CheckInUserRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CheckInUserRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CheckInRequest proto.InternalMessageInfo
+var xxx_messageInfo_CheckInUserRequest proto.InternalMessageInfo
 
-func (m *CheckInRequest) GetUserId() string {
+func (m *CheckInUserRequest) GetUserId() string {
 	if m != nil {
 		return m.UserId
 	}
 	return ""
 }
 
-func (m *CheckInRequest) GetLocation() *CheckInRequest_Location {
+func (m *CheckInUserRequest) GetLocation() *CheckInUserRequest_Location {
 	if m != nil {
 		return m.Location
 	}
 	return nil
 }
 
-func (m *CheckInRequest) GetTimestamp() string {
+func (m *CheckInUserRequest) GetTimestamp() string {
 	if m != nil {
 		return m.Timestamp
 	}
 	return ""
 }
 
-func (m *CheckInRequest) GetVenue() *CheckInRequest_Venue {
+func (m *CheckInUserRequest) GetVenue() *CheckInUserRequest_Venue {
 	if m != nil {
 		return m.Venue
 	}
 	return nil
 }
 
-func (m *CheckInRequest) GetFriendsWith() []string {
+func (m *CheckInUserRequest) GetFriendsWith() []string {
 	if m != nil {
 		return m.FriendsWith
 	}
 	return nil
 }
 
-type CheckInRequest_Location struct {
+type CheckInUserRequest_Location struct {
 	Longitude            float32  `protobuf:"fixed32,1,opt,name=longitude,proto3" json:"longitude,omitempty"`
 	Latitude             float32  `protobuf:"fixed32,2,opt,name=latitude,proto3" json:"latitude,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -103,120 +103,324 @@ type CheckInRequest_Location struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CheckInRequest_Location) Reset()         { *m = CheckInRequest_Location{} }
-func (m *CheckInRequest_Location) String() string { return proto.CompactTextString(m) }
-func (*CheckInRequest_Location) ProtoMessage()    {}
-func (*CheckInRequest_Location) Descriptor() ([]byte, []int) {
+func (m *CheckInUserRequest_Location) Reset()         { *m = CheckInUserRequest_Location{} }
+func (m *CheckInUserRequest_Location) String() string { return proto.CompactTextString(m) }
+func (*CheckInUserRequest_Location) ProtoMessage()    {}
+func (*CheckInUserRequest_Location) Descriptor() ([]byte, []int) {
 	return fileDescriptor_7313afa335dc5440, []int{0, 0}
 }
 
-func (m *CheckInRequest_Location) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CheckInRequest_Location.Unmarshal(m, b)
+func (m *CheckInUserRequest_Location) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CheckInUserRequest_Location.Unmarshal(m, b)
 }
-func (m *CheckInRequest_Location) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CheckInRequest_Location.Marshal(b, m, deterministic)
+func (m *CheckInUserRequest_Location) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CheckInUserRequest_Location.Marshal(b, m, deterministic)
 }
-func (m *CheckInRequest_Location) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CheckInRequest_Location.Merge(m, src)
+func (m *CheckInUserRequest_Location) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CheckInUserRequest_Location.Merge(m, src)
 }
-func (m *CheckInRequest_Location) XXX_Size() int {
-	return xxx_messageInfo_CheckInRequest_Location.Size(m)
+func (m *CheckInUserRequest_Location) XXX_Size() int {
+	return xxx_messageInfo_CheckInUserRequest_Location.Size(m)
 }
-func (m *CheckInRequest_Location) XXX_DiscardUnknown() {
-	xxx_messageInfo_CheckInRequest_Location.DiscardUnknown(m)
+func (m *CheckInUserRequest_Location) XXX_DiscardUnknown() {
+	xxx_messageInfo_CheckInUserRequest_Location.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CheckInRequest_Location proto.InternalMessageInfo
+var xxx_messageInfo_CheckInUserRequest_Location proto.InternalMessageInfo
 
-func (m *CheckInRequest_Location) GetLongitude() float32 {
+func (m *CheckInUserRequest_Location) GetLongitude() float32 {
 	if m != nil {
 		return m.Longitude
 	}
 	return 0
 }
 
-func (m *CheckInRequest_Location) GetLatitude() float32 {
+func (m *CheckInUserRequest_Location) GetLatitude() float32 {
 	if m != nil {
 		return m.Latitude
 	}
 	return 0
 }
 
-type CheckInRequest_Venue struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=Name,proto3" json:"Name,omitempty"`
+type CheckInUserRequest_Venue struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CheckInRequest_Venue) Reset()         { *m = CheckInRequest_Venue{} }
-func (m *CheckInRequest_Venue) String() string { return proto.CompactTextString(m) }
-func (*CheckInRequest_Venue) ProtoMessage()    {}
-func (*CheckInRequest_Venue) Descriptor() ([]byte, []int) {
+func (m *CheckInUserRequest_Venue) Reset()         { *m = CheckInUserRequest_Venue{} }
+func (m *CheckInUserRequest_Venue) String() string { return proto.CompactTextString(m) }
+func (*CheckInUserRequest_Venue) ProtoMessage()    {}
+func (*CheckInUserRequest_Venue) Descriptor() ([]byte, []int) {
 	return fileDescriptor_7313afa335dc5440, []int{0, 1}
 }
 
-func (m *CheckInRequest_Venue) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CheckInRequest_Venue.Unmarshal(m, b)
+func (m *CheckInUserRequest_Venue) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CheckInUserRequest_Venue.Unmarshal(m, b)
 }
-func (m *CheckInRequest_Venue) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CheckInRequest_Venue.Marshal(b, m, deterministic)
+func (m *CheckInUserRequest_Venue) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CheckInUserRequest_Venue.Marshal(b, m, deterministic)
 }
-func (m *CheckInRequest_Venue) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CheckInRequest_Venue.Merge(m, src)
+func (m *CheckInUserRequest_Venue) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CheckInUserRequest_Venue.Merge(m, src)
 }
-func (m *CheckInRequest_Venue) XXX_Size() int {
-	return xxx_messageInfo_CheckInRequest_Venue.Size(m)
+func (m *CheckInUserRequest_Venue) XXX_Size() int {
+	return xxx_messageInfo_CheckInUserRequest_Venue.Size(m)
 }
-func (m *CheckInRequest_Venue) XXX_DiscardUnknown() {
-	xxx_messageInfo_CheckInRequest_Venue.DiscardUnknown(m)
+func (m *CheckInUserRequest_Venue) XXX_DiscardUnknown() {
+	xxx_messageInfo_CheckInUserRequest_Venue.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CheckInRequest_Venue proto.InternalMessageInfo
+var xxx_messageInfo_CheckInUserRequest_Venue proto.InternalMessageInfo
 
-func (m *CheckInRequest_Venue) GetName() string {
+func (m *CheckInUserRequest_Venue) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-type CheckInResponse struct {
+type CheckInUserResponse struct {
+	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	VenueName            string   `protobuf:"bytes,2,opt,name=venue_name,json=venueName,proto3" json:"venue_name,omitempty"`
+	FriendsCount         int32    `protobuf:"varint,3,opt,name=friends_count,json=friendsCount,proto3" json:"friends_count,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CheckInResponse) Reset()         { *m = CheckInResponse{} }
-func (m *CheckInResponse) String() string { return proto.CompactTextString(m) }
-func (*CheckInResponse) ProtoMessage()    {}
-func (*CheckInResponse) Descriptor() ([]byte, []int) {
+func (m *CheckInUserResponse) Reset()         { *m = CheckInUserResponse{} }
+func (m *CheckInUserResponse) String() string { return proto.CompactTextString(m) }
+func (*CheckInUserResponse) ProtoMessage()    {}
+func (*CheckInUserResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_7313afa335dc5440, []int{1}
 }
 
-func (m *CheckInResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CheckInResponse.Unmarshal(m, b)
+func (m *CheckInUserResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CheckInUserResponse.Unmarshal(m, b)
 }
-func (m *CheckInResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CheckInResponse.Marshal(b, m, deterministic)
+func (m *CheckInUserResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CheckInUserResponse.Marshal(b, m, deterministic)
 }
-func (m *CheckInResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CheckInResponse.Merge(m, src)
+func (m *CheckInUserResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CheckInUserResponse.Merge(m, src)
 }
-func (m *CheckInResponse) XXX_Size() int {
-	return xxx_messageInfo_CheckInResponse.Size(m)
+func (m *CheckInUserResponse) XXX_Size() int {
+	return xxx_messageInfo_CheckInUserResponse.Size(m)
 }
-func (m *CheckInResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CheckInResponse.DiscardUnknown(m)
+func (m *CheckInUserResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CheckInUserResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CheckInResponse proto.InternalMessageInfo
+var xxx_messageInfo_CheckInUserResponse proto.InternalMessageInfo
+
+func (m *CheckInUserResponse) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+func (m *CheckInUserResponse) GetVenueName() string {
+	if m != nil {
+		return m.VenueName
+	}
+	return ""
+}
+
+func (m *CheckInUserResponse) GetFriendsCount() int32 {
+	if m != nil {
+		return m.FriendsCount
+	}
+	return 0
+}
+
+type GetCheckedInVenuesRequest struct {
+	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetCheckedInVenuesRequest) Reset()         { *m = GetCheckedInVenuesRequest{} }
+func (m *GetCheckedInVenuesRequest) String() string { return proto.CompactTextString(m) }
+func (*GetCheckedInVenuesRequest) ProtoMessage()    {}
+func (*GetCheckedInVenuesRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7313afa335dc5440, []int{2}
+}
+
+func (m *GetCheckedInVenuesRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetCheckedInVenuesRequest.Unmarshal(m, b)
+}
+func (m *GetCheckedInVenuesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetCheckedInVenuesRequest.Marshal(b, m, deterministic)
+}
+func (m *GetCheckedInVenuesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetCheckedInVenuesRequest.Merge(m, src)
+}
+func (m *GetCheckedInVenuesRequest) XXX_Size() int {
+	return xxx_messageInfo_GetCheckedInVenuesRequest.Size(m)
+}
+func (m *GetCheckedInVenuesRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetCheckedInVenuesRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetCheckedInVenuesRequest proto.InternalMessageInfo
+
+func (m *GetCheckedInVenuesRequest) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+type GetCheckedInVenuesResponse struct {
+	Venue                []*GetCheckedInVenuesResponse_Venue `protobuf:"bytes,1,rep,name=venue,proto3" json:"venue,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                            `json:"-"`
+	XXX_unrecognized     []byte                              `json:"-"`
+	XXX_sizecache        int32                               `json:"-"`
+}
+
+func (m *GetCheckedInVenuesResponse) Reset()         { *m = GetCheckedInVenuesResponse{} }
+func (m *GetCheckedInVenuesResponse) String() string { return proto.CompactTextString(m) }
+func (*GetCheckedInVenuesResponse) ProtoMessage()    {}
+func (*GetCheckedInVenuesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7313afa335dc5440, []int{3}
+}
+
+func (m *GetCheckedInVenuesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetCheckedInVenuesResponse.Unmarshal(m, b)
+}
+func (m *GetCheckedInVenuesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetCheckedInVenuesResponse.Marshal(b, m, deterministic)
+}
+func (m *GetCheckedInVenuesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetCheckedInVenuesResponse.Merge(m, src)
+}
+func (m *GetCheckedInVenuesResponse) XXX_Size() int {
+	return xxx_messageInfo_GetCheckedInVenuesResponse.Size(m)
+}
+func (m *GetCheckedInVenuesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetCheckedInVenuesResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetCheckedInVenuesResponse proto.InternalMessageInfo
+
+func (m *GetCheckedInVenuesResponse) GetVenue() []*GetCheckedInVenuesResponse_Venue {
+	if m != nil {
+		return m.Venue
+	}
+	return nil
+}
+
+type GetCheckedInVenuesResponse_Venue struct {
+	Name                 string                                     `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Location             *GetCheckedInVenuesResponse_Venue_Location `protobuf:"bytes,2,opt,name=location,proto3" json:"location,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                   `json:"-"`
+	XXX_unrecognized     []byte                                     `json:"-"`
+	XXX_sizecache        int32                                      `json:"-"`
+}
+
+func (m *GetCheckedInVenuesResponse_Venue) Reset()         { *m = GetCheckedInVenuesResponse_Venue{} }
+func (m *GetCheckedInVenuesResponse_Venue) String() string { return proto.CompactTextString(m) }
+func (*GetCheckedInVenuesResponse_Venue) ProtoMessage()    {}
+func (*GetCheckedInVenuesResponse_Venue) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7313afa335dc5440, []int{3, 0}
+}
+
+func (m *GetCheckedInVenuesResponse_Venue) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetCheckedInVenuesResponse_Venue.Unmarshal(m, b)
+}
+func (m *GetCheckedInVenuesResponse_Venue) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetCheckedInVenuesResponse_Venue.Marshal(b, m, deterministic)
+}
+func (m *GetCheckedInVenuesResponse_Venue) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetCheckedInVenuesResponse_Venue.Merge(m, src)
+}
+func (m *GetCheckedInVenuesResponse_Venue) XXX_Size() int {
+	return xxx_messageInfo_GetCheckedInVenuesResponse_Venue.Size(m)
+}
+func (m *GetCheckedInVenuesResponse_Venue) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetCheckedInVenuesResponse_Venue.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetCheckedInVenuesResponse_Venue proto.InternalMessageInfo
+
+func (m *GetCheckedInVenuesResponse_Venue) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *GetCheckedInVenuesResponse_Venue) GetLocation() *GetCheckedInVenuesResponse_Venue_Location {
+	if m != nil {
+		return m.Location
+	}
+	return nil
+}
+
+type GetCheckedInVenuesResponse_Venue_Location struct {
+	Longitude            float32  `protobuf:"fixed32,1,opt,name=longitude,proto3" json:"longitude,omitempty"`
+	Latitude             float32  `protobuf:"fixed32,2,opt,name=latitude,proto3" json:"latitude,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetCheckedInVenuesResponse_Venue_Location) Reset() {
+	*m = GetCheckedInVenuesResponse_Venue_Location{}
+}
+func (m *GetCheckedInVenuesResponse_Venue_Location) String() string {
+	return proto.CompactTextString(m)
+}
+func (*GetCheckedInVenuesResponse_Venue_Location) ProtoMessage() {}
+func (*GetCheckedInVenuesResponse_Venue_Location) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7313afa335dc5440, []int{3, 0, 0}
+}
+
+func (m *GetCheckedInVenuesResponse_Venue_Location) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetCheckedInVenuesResponse_Venue_Location.Unmarshal(m, b)
+}
+func (m *GetCheckedInVenuesResponse_Venue_Location) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetCheckedInVenuesResponse_Venue_Location.Marshal(b, m, deterministic)
+}
+func (m *GetCheckedInVenuesResponse_Venue_Location) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetCheckedInVenuesResponse_Venue_Location.Merge(m, src)
+}
+func (m *GetCheckedInVenuesResponse_Venue_Location) XXX_Size() int {
+	return xxx_messageInfo_GetCheckedInVenuesResponse_Venue_Location.Size(m)
+}
+func (m *GetCheckedInVenuesResponse_Venue_Location) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetCheckedInVenuesResponse_Venue_Location.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetCheckedInVenuesResponse_Venue_Location proto.InternalMessageInfo
+
+func (m *GetCheckedInVenuesResponse_Venue_Location) GetLongitude() float32 {
+	if m != nil {
+		return m.Longitude
+	}
+	return 0
+}
+
+func (m *GetCheckedInVenuesResponse_Venue_Location) GetLatitude() float32 {
+	if m != nil {
+		return m.Latitude
+	}
+	return 0
+}
 
 func init() {
-	proto.RegisterType((*CheckInRequest)(nil), "checkin.CheckInRequest")
-	proto.RegisterType((*CheckInRequest_Location)(nil), "checkin.CheckInRequest.Location")
-	proto.RegisterType((*CheckInRequest_Venue)(nil), "checkin.CheckInRequest.Venue")
-	proto.RegisterType((*CheckInResponse)(nil), "checkin.CheckInResponse")
+	proto.RegisterType((*CheckInUserRequest)(nil), "checkin.CheckInUserRequest")
+	proto.RegisterType((*CheckInUserRequest_Location)(nil), "checkin.CheckInUserRequest.Location")
+	proto.RegisterType((*CheckInUserRequest_Venue)(nil), "checkin.CheckInUserRequest.Venue")
+	proto.RegisterType((*CheckInUserResponse)(nil), "checkin.CheckInUserResponse")
+	proto.RegisterType((*GetCheckedInVenuesRequest)(nil), "checkin.GetCheckedInVenuesRequest")
+	proto.RegisterType((*GetCheckedInVenuesResponse)(nil), "checkin.GetCheckedInVenuesResponse")
+	proto.RegisterType((*GetCheckedInVenuesResponse_Venue)(nil), "checkin.GetCheckedInVenuesResponse.Venue")
+	proto.RegisterType((*GetCheckedInVenuesResponse_Venue_Location)(nil), "checkin.GetCheckedInVenuesResponse.Venue.Location")
 }
 
 func init() {
@@ -224,26 +428,34 @@ func init() {
 }
 
 var fileDescriptor_7313afa335dc5440 = []byte{
-	// 298 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x91, 0x3f, 0x4f, 0xf3, 0x30,
-	0x10, 0xc6, 0xd5, 0xf4, 0xff, 0xf5, 0xd5, 0x4b, 0xb9, 0xa5, 0x56, 0x00, 0x29, 0x74, 0xea, 0xd4,
-	0x8a, 0x76, 0x65, 0x40, 0x94, 0xa5, 0xa2, 0x62, 0xb0, 0x04, 0x48, 0x2c, 0x55, 0x48, 0x0e, 0x6a,
-	0xd1, 0xd8, 0xc1, 0x76, 0xc2, 0xd7, 0xe3, 0xa3, 0xa1, 0x38, 0x21, 0x05, 0xa1, 0x6e, 0x77, 0xf7,
-	0x3c, 0xfe, 0xf9, 0x39, 0x1b, 0x86, 0xf9, 0xc5, 0x2c, 0xda, 0x52, 0xf4, 0x26, 0xe4, 0x34, 0xd5,
-	0xca, 0x2a, 0xec, 0x56, 0xed, 0xf8, 0xd3, 0x83, 0xff, 0xcb, 0xa2, 0x5e, 0x49, 0x4e, 0xef, 0x19,
-	0x19, 0x8b, 0x23, 0xe8, 0x66, 0x86, 0xf4, 0x46, 0xc4, 0xac, 0x11, 0x34, 0x26, 0x7d, 0xde, 0x29,
-	0xda, 0x55, 0x8c, 0x97, 0xd0, 0xdb, 0xa9, 0x28, 0xb4, 0x42, 0x49, 0xe6, 0x05, 0x8d, 0xc9, 0x60,
-	0x1e, 0x4c, 0xbf, 0xb1, 0xbf, 0x19, 0xd3, 0x75, 0xe5, 0xe3, 0xf5, 0x09, 0x3c, 0x85, 0xbe, 0x15,
-	0x09, 0x19, 0x1b, 0x26, 0x29, 0x6b, 0x3a, 0xf0, 0x7e, 0x80, 0x0b, 0x68, 0xe7, 0x24, 0x33, 0x62,
-	0x2d, 0x07, 0x3e, 0x3b, 0x04, 0x7e, 0x28, 0x4c, 0xbc, 0xf4, 0xe2, 0x39, 0xfc, 0x7b, 0xd1, 0x82,
-	0x64, 0x6c, 0x36, 0x1f, 0xc2, 0x6e, 0x59, 0x3b, 0x68, 0x4e, 0xfa, 0x7c, 0x50, 0xcd, 0x1e, 0x85,
-	0xdd, 0xfa, 0x37, 0xd0, 0x5b, 0xff, 0x48, 0xb0, 0x53, 0xf2, 0x55, 0xd8, 0x2c, 0x26, 0xb7, 0x9a,
-	0xc7, 0xf7, 0x03, 0xf4, 0xa1, 0xb7, 0x0b, 0x6d, 0x29, 0x7a, 0x4e, 0xac, 0x7b, 0xff, 0x04, 0xda,
-	0xee, 0x62, 0x44, 0x68, 0xdd, 0x85, 0x09, 0x55, 0x0f, 0xe3, 0xea, 0xf1, 0x31, 0x1c, 0xd5, 0x21,
-	0x4d, 0xaa, 0xa4, 0xa1, 0xf9, 0x2d, 0x74, 0x97, 0x65, 0x7e, 0xbc, 0x82, 0xc1, 0xbd, 0x21, 0x5d,
-	0x39, 0x70, 0x74, 0x60, 0x31, 0x9f, 0xfd, 0x15, 0x4a, 0xd8, 0x35, 0x3e, 0x0d, 0x95, 0x16, 0xb3,
-	0x44, 0x44, 0x5a, 0x19, 0xd2, 0xb9, 0x88, 0xe8, 0xb9, 0xe3, 0xbe, 0x71, 0xf1, 0x15, 0x00, 0x00,
-	0xff, 0xff, 0x11, 0x59, 0x5a, 0x49, 0xda, 0x01, 0x00, 0x00,
+	// 418 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x53, 0xdd, 0x8a, 0xd3, 0x40,
+	0x14, 0x26, 0xe9, 0x66, 0xdb, 0x9e, 0x28, 0x2c, 0xc7, 0x0b, 0x63, 0x76, 0x85, 0x6c, 0xd6, 0x8b,
+	0x78, 0xd3, 0xc5, 0x28, 0x78, 0xa9, 0x58, 0x41, 0x0b, 0xcb, 0x5e, 0x04, 0x54, 0x10, 0xa4, 0xc4,
+	0xe4, 0x68, 0x07, 0x9b, 0x99, 0x3a, 0x33, 0xa9, 0xcf, 0xe1, 0xa3, 0xe8, 0x73, 0xf8, 0x50, 0x92,
+	0x49, 0xd2, 0x1f, 0xda, 0xc6, 0x5e, 0x78, 0x97, 0x39, 0x3f, 0xdf, 0xf9, 0xce, 0xf7, 0x9d, 0xc0,
+	0xd9, 0xf2, 0xc9, 0x75, 0x36, 0xa3, 0xec, 0x1b, 0xe3, 0xa3, 0x85, 0x14, 0x5a, 0x60, 0xbf, 0x79,
+	0x86, 0x7f, 0x6c, 0xc0, 0x71, 0xf5, 0x3d, 0xe1, 0xef, 0x14, 0xc9, 0x84, 0xbe, 0x97, 0xa4, 0x34,
+	0xde, 0x87, 0x7e, 0xa9, 0x48, 0x4e, 0x59, 0xee, 0x59, 0x81, 0x15, 0x0d, 0x93, 0xd3, 0xea, 0x39,
+	0xc9, 0xf1, 0x25, 0x0c, 0xe6, 0x22, 0x4b, 0x35, 0x13, 0xdc, 0xb3, 0x03, 0x2b, 0x72, 0xe3, 0x47,
+	0xa3, 0x16, 0x7a, 0x17, 0x67, 0x74, 0xd3, 0xd4, 0x26, 0xab, 0x2e, 0xbc, 0x80, 0xa1, 0x66, 0x05,
+	0x29, 0x9d, 0x16, 0x0b, 0xaf, 0x67, 0xc0, 0xd7, 0x01, 0x7c, 0x0e, 0xce, 0x92, 0x78, 0x49, 0xde,
+	0x89, 0x01, 0xbf, 0xec, 0x02, 0x7f, 0x5f, 0x15, 0x26, 0x75, 0x3d, 0x5e, 0xc2, 0x9d, 0x2f, 0x92,
+	0x11, 0xcf, 0xd5, 0xf4, 0x07, 0xd3, 0x33, 0xcf, 0x09, 0x7a, 0xd1, 0x30, 0x71, 0x9b, 0xd8, 0x07,
+	0xa6, 0x67, 0xfe, 0x6b, 0x18, 0xdc, 0x6c, 0xb0, 0x98, 0x0b, 0xfe, 0x95, 0xe9, 0x32, 0x27, 0xb3,
+	0xa2, 0x9d, 0xac, 0x03, 0xe8, 0xc3, 0x60, 0x9e, 0xea, 0x3a, 0x69, 0x9b, 0xe4, 0xea, 0xed, 0x9f,
+	0x83, 0x63, 0x06, 0x23, 0xc2, 0x09, 0x4f, 0x0b, 0x6a, 0x04, 0x32, 0xdf, 0xa1, 0x84, 0x7b, 0x5b,
+	0x44, 0xd5, 0x42, 0x70, 0x45, 0x87, 0xe5, 0x7c, 0x08, 0x60, 0xe8, 0x4f, 0x0d, 0x92, 0x5d, 0xab,
+	0x61, 0x22, 0xb7, 0x69, 0x41, 0x78, 0x05, 0x77, 0xdb, 0xa5, 0x32, 0x51, 0x72, 0x6d, 0xf4, 0x72,
+	0x92, 0x76, 0xd3, 0x71, 0x15, 0x0b, 0x9f, 0xc1, 0x83, 0x37, 0xa4, 0xcd, 0x58, 0xca, 0x27, 0xdc,
+	0x90, 0x53, 0xff, 0x32, 0x32, 0xfc, 0x69, 0x83, 0xbf, 0xaf, 0xad, 0x61, 0xfc, 0xa2, 0xf5, 0xc1,
+	0x0a, 0x7a, 0x91, 0x1b, 0x3f, 0x5e, 0xf9, 0x70, 0xb8, 0x67, 0xcb, 0x0f, 0xff, 0x97, 0xd5, 0xa1,
+	0x13, 0xde, 0xee, 0x9c, 0x51, 0x7c, 0xf4, 0x84, 0x3d, 0x47, 0xf5, 0x7f, 0xac, 0x8d, 0x7f, 0x5b,
+	0xd0, 0x1f, 0xd7, 0x2c, 0xf0, 0x2d, 0xb8, 0x1b, 0x4e, 0xe2, 0x79, 0xc7, 0x21, 0xfa, 0x17, 0xfb,
+	0x93, 0x8d, 0x94, 0x9f, 0x00, 0x77, 0x57, 0xc2, 0xb0, 0x73, 0xdf, 0x1a, 0xf7, 0xea, 0x08, 0x4d,
+	0x5e, 0xe1, 0xc7, 0x33, 0x21, 0xd9, 0x75, 0xc1, 0x32, 0x29, 0x14, 0xc9, 0x25, 0xcb, 0xe8, 0xf3,
+	0xa9, 0xf9, 0xcb, 0x9f, 0xfe, 0x0d, 0x00, 0x00, 0xff, 0xff, 0x8e, 0xa0, 0x83, 0xfe, 0xf9, 0x03,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -258,7 +470,8 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CheckinClient interface {
-	UserCheckIn(ctx context.Context, in *CheckInRequest, opts ...grpc.CallOption) (*CheckInResponse, error)
+	CheckInUser(ctx context.Context, in *CheckInUserRequest, opts ...grpc.CallOption) (*CheckInUserResponse, error)
+	GetCheckedInVenues(ctx context.Context, in *GetCheckedInVenuesRequest, opts ...grpc.CallOption) (*GetCheckedInVenuesResponse, error)
 }
 
 type checkinClient struct {
@@ -269,9 +482,18 @@ func NewCheckinClient(cc grpc.ClientConnInterface) CheckinClient {
 	return &checkinClient{cc}
 }
 
-func (c *checkinClient) UserCheckIn(ctx context.Context, in *CheckInRequest, opts ...grpc.CallOption) (*CheckInResponse, error) {
-	out := new(CheckInResponse)
-	err := c.cc.Invoke(ctx, "/checkin.Checkin/UserCheckIn", in, out, opts...)
+func (c *checkinClient) CheckInUser(ctx context.Context, in *CheckInUserRequest, opts ...grpc.CallOption) (*CheckInUserResponse, error) {
+	out := new(CheckInUserResponse)
+	err := c.cc.Invoke(ctx, "/checkin.Checkin/CheckInUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *checkinClient) GetCheckedInVenues(ctx context.Context, in *GetCheckedInVenuesRequest, opts ...grpc.CallOption) (*GetCheckedInVenuesResponse, error) {
+	out := new(GetCheckedInVenuesResponse)
+	err := c.cc.Invoke(ctx, "/checkin.Checkin/GetCheckedInVenues", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -280,35 +502,57 @@ func (c *checkinClient) UserCheckIn(ctx context.Context, in *CheckInRequest, opt
 
 // CheckinServer is the server API for Checkin service.
 type CheckinServer interface {
-	UserCheckIn(context.Context, *CheckInRequest) (*CheckInResponse, error)
+	CheckInUser(context.Context, *CheckInUserRequest) (*CheckInUserResponse, error)
+	GetCheckedInVenues(context.Context, *GetCheckedInVenuesRequest) (*GetCheckedInVenuesResponse, error)
 }
 
 // UnimplementedCheckinServer can be embedded to have forward compatible implementations.
 type UnimplementedCheckinServer struct {
 }
 
-func (*UnimplementedCheckinServer) UserCheckIn(ctx context.Context, req *CheckInRequest) (*CheckInResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UserCheckIn not implemented")
+func (*UnimplementedCheckinServer) CheckInUser(ctx context.Context, req *CheckInUserRequest) (*CheckInUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckInUser not implemented")
+}
+func (*UnimplementedCheckinServer) GetCheckedInVenues(ctx context.Context, req *GetCheckedInVenuesRequest) (*GetCheckedInVenuesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCheckedInVenues not implemented")
 }
 
 func RegisterCheckinServer(s *grpc.Server, srv CheckinServer) {
 	s.RegisterService(&_Checkin_serviceDesc, srv)
 }
 
-func _Checkin_UserCheckIn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckInRequest)
+func _Checkin_CheckInUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckInUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CheckinServer).UserCheckIn(ctx, in)
+		return srv.(CheckinServer).CheckInUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/checkin.Checkin/UserCheckIn",
+		FullMethod: "/checkin.Checkin/CheckInUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CheckinServer).UserCheckIn(ctx, req.(*CheckInRequest))
+		return srv.(CheckinServer).CheckInUser(ctx, req.(*CheckInUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Checkin_GetCheckedInVenues_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCheckedInVenuesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CheckinServer).GetCheckedInVenues(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/checkin.Checkin/GetCheckedInVenues",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CheckinServer).GetCheckedInVenues(ctx, req.(*GetCheckedInVenuesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -318,8 +562,12 @@ var _Checkin_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*CheckinServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "UserCheckIn",
-			Handler:    _Checkin_UserCheckIn_Handler,
+			MethodName: "CheckInUser",
+			Handler:    _Checkin_CheckInUser_Handler,
+		},
+		{
+			MethodName: "GetCheckedInVenues",
+			Handler:    _Checkin_GetCheckedInVenues_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

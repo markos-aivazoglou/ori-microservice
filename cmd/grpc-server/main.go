@@ -5,7 +5,9 @@ import (
 	"log"
 	"net"
 	checkin "ori/microservice/internal"
-	"ori/microservice/proto-gen/api_v1/ori/microservice"
+	"ori/microservice/internal/server"
+	"ori/microservice/internal/service"
+	"ori/microservice/internal/storage/inmem"
 
 	"github.com/spf13/viper"
 
@@ -28,12 +30,11 @@ func main() {
 	if err := viper.Unmarshal(&conf); err != nil {
 		panic(err)
 	}
-	fmt.Println(conf)
-	repo := checkin.NewUserRepository()
-	service := checkin.NewCheckinService(repo)
-	server := checkin.NewGRPCCheckinServer(service)
+	// fmt.Println(conf)
+	repo := inmem.NewUserRepository()
+	service := service.NewCheckinService(repo)
 	user := &checkin.User{
-		UserID: checkin.UserID("195b5c7f-4bc7-461b-8438-8beb9f9fcd16"),
+		ID: checkin.UserID("195b5c7f-4bc7-461b-8438-8beb9f9fcd16"),
 	}
 	_ = repo.Store(user)
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", conf.GRPCPort))
@@ -41,6 +42,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	grpcServer := grpc.NewServer()
-	microservice.RegisterCheckinServer(grpcServer, server)
-	_ = grpcServer.Serve(lis)
+	server.NewGRPCCheckinServer(grpcServer, service)
+	fmt.Println(grpcServer.GetServiceInfo())
+	log.Fatalln(grpcServer.Serve(lis))
 }
