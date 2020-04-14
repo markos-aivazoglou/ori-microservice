@@ -3,6 +3,7 @@ module ori/microservice
 go 1.14
 
 require (
+	github.com/go-chi/chi v4.1.0+incompatible
 	github.com/golang/protobuf v1.4.0-rc.4
 	github.com/google/uuid v1.1.1
 	github.com/spf13/viper v1.6.3

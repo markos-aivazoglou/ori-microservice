@@ -1,16 +1,21 @@
 
-.ONESHELL:
-SHELL := /bin/sh
+include ./scripts/conf-dev.env
+export
 
+unit-test:
+	echo 'Running unit tests'
+	go test -v ./internal/...
+
+integration-test:
+	echo 'Running integration Tests'
+run-local-server:
+	go run cmd/server/main.go
+
+run-local-client:
+	go run cmd/grpc-client/main.go
 
 generate-grpc:
 	protoc -I api/proto/ v1/checkin.proto --go_out=plugins=grpc:proto-gen/api_v1
-
-set-minikube-docker-daemon:
-	$(eval "minikube docker-env")
-
-reset-docker-daemon:
-	$(eval "minikube docker-env -u")
 
 build-all: build-server build-client
 	# docker image prune -f

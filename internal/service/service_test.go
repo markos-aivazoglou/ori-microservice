@@ -1,6 +1,7 @@
 package service
 
 import (
+	"context"
 	"errors"
 	checkin "ori/microservice/internal"
 	mock "ori/microservice/internal/mock/repositories"
@@ -28,13 +29,13 @@ func TestCheckinService_UserCheckIn(t *testing.T) {
 		{
 			name: "user checkin usecase - happy path",
 			repository: &mock.UserRepository{
-				GetUserFn: func(uid checkin.UserID) (*checkin.User, error) {
+				GetUserFn: func(ctx context.Context, uid checkin.UserID) (*checkin.User, error) {
 					return &checkin.User{
 						ID:       userID,
 						CheckIns: checkin.CheckIns{},
 					}, nil
 				},
-				StoreFn: func(u *checkin.User) error {
+				StoreFn: func(ctx context.Context, u *checkin.User) error {
 					return nil
 				},
 			},
@@ -65,7 +66,7 @@ func TestCheckinService_UserCheckIn(t *testing.T) {
 		{
 			name: "error getting user from repository",
 			repository: &mock.UserRepository{
-				GetUserFn: func(uid checkin.UserID) (*checkin.User, error) {
+				GetUserFn: func(ctx context.Context, uid checkin.UserID) (*checkin.User, error) {
 					return nil, errors.New("get user error")
 				},
 			},
@@ -86,13 +87,13 @@ func TestCheckinService_UserCheckIn(t *testing.T) {
 		{
 			name: "error storing user to repository after check-in",
 			repository: &mock.UserRepository{
-				GetUserFn: func(uid checkin.UserID) (*checkin.User, error) {
+				GetUserFn: func(ctx context.Context, uid checkin.UserID) (*checkin.User, error) {
 					return &checkin.User{
 						ID:       userID,
 						CheckIns: checkin.CheckIns{},
 					}, nil
 				},
-				StoreFn: func(u *checkin.User) error {
+				StoreFn: func(ctx context.Context, u *checkin.User) error {
 					return errors.New("store user error")
 				},
 			},
@@ -114,7 +115,7 @@ func TestCheckinService_UserCheckIn(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			service := NewCheckinService(tt.repository)
-			result, err := service.UserCheckIn(tt.ciData)
+			result, err := service.UserCheckIn(context.Background(), tt.ciData)
 			if err != nil == !tt.expectErr {
 				t.Fatalf("was not expecting error but received %#v", err)
 			}
@@ -138,7 +139,7 @@ func TestCheckinService_GetVenues(t *testing.T) {
 		{
 			name: "user checkin usecase - happy path",
 			repository: &mock.UserRepository{
-				GetUserFn: func(uid checkin.UserID) (*checkin.User, error) {
+				GetUserFn: func(ctx context.Context, uid checkin.UserID) (*checkin.User, error) {
 					return &checkin.User{
 						ID: userID,
 						CheckIns: checkin.CheckIns{
@@ -163,7 +164,7 @@ func TestCheckinService_GetVenues(t *testing.T) {
 						},
 					}, nil
 				},
-				StoreFn: func(u *checkin.User) error {
+				StoreFn: func(ctx context.Context, u *checkin.User) error {
 					return nil
 				},
 			},
@@ -190,7 +191,7 @@ func TestCheckinService_GetVenues(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			service := NewCheckinService(tt.repository)
-			result, err := service.GetVenues(tt.userID)
+			result, err := service.GetVenues(context.Background(), tt.userID)
 			if err != nil == !tt.expectErr {
 				t.Fatalf("was not expecting error but received %#v", err)
 			}

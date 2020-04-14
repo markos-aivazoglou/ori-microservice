@@ -1,4 +1,4 @@
-package server
+package grpc
 
 import (
 	"context"
@@ -9,19 +9,18 @@ import (
 	"google.golang.org/grpc"
 )
 
-type GRPCCheckinServer struct {
-	microservice.CheckinServer
+type CheckInServer struct {
 	service *service.Checkin
 }
 
-func NewGRPCCheckinServer(grpcServer *grpc.Server, service *service.Checkin) microservice.CheckinServer {
-	server := &GRPCCheckinServer{
+func NewCheckInServer(grpcServer *grpc.Server, service *service.Checkin) microservice.CheckinServer {
+	server := &CheckInServer{
 		service: service,
 	}
 	microservice.RegisterCheckinServer(grpcServer, server)
 	return server
 }
-func (s *GRPCCheckinServer) CheckInUser(ctx context.Context, r *microservice.CheckInUserRequest) (*microservice.CheckInUserResponse, error) {
+func (s *CheckInServer) CheckInUser(ctx context.Context, r *microservice.CheckInUserRequest) (*microservice.CheckInUserResponse, error) {
 	location := checkin.Location{
 		Longitude: r.GetLocation().GetLongitude(),
 		Latitude:  r.GetLocation().GetLatitude(),
@@ -40,7 +39,7 @@ func (s *GRPCCheckinServer) CheckInUser(ctx context.Context, r *microservice.Che
 		Venue:   venue,
 		Friends: friends,
 	}
-	result, err := s.service.UserCheckIn(d)
+	result, err := s.service.UserCheckIn(ctx, d)
 	if err != nil {
 		return nil, err
 	}
@@ -51,8 +50,8 @@ func (s *GRPCCheckinServer) CheckInUser(ctx context.Context, r *microservice.Che
 	}, err
 }
 
-func (s *GRPCCheckinServer) GetCheckedInVenues(ctx context.Context, in *microservice.GetCheckedInVenuesRequest) (*microservice.GetCheckedInVenuesResponse, error) {
-	venues, err := s.service.GetVenues(checkin.UserID(in.GetUserId()))
+func (s *CheckInServer) GetCheckedInVenues(ctx context.Context, in *microservice.GetCheckedInVenuesRequest) (*microservice.GetCheckedInVenuesResponse, error) {
+	venues, err := s.service.GetVenues(ctx, checkin.UserID(in.GetUserId()))
 	if err != nil {
 		return nil, err
 	}

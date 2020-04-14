@@ -1,6 +1,7 @@
 package inmem
 
 import (
+	"context"
 	checkin "ori/microservice/internal"
 	"sync"
 )
@@ -17,12 +18,12 @@ func NewUserRepository() checkin.UserRepository {
 	}
 }
 
-func (r *Repository) GetUser(uid checkin.UserID) (*checkin.User, error) {
+func (r *Repository) GetUser(ctx context.Context, uid checkin.UserID) (*checkin.User, error) {
 	user := r.store[uid]
 	return user, nil
 }
 
-func (r *Repository) Store(user *checkin.User) error {
+func (r *Repository) Store(ctx context.Context, user *checkin.User) error {
 	r.m.Lock()
 	defer r.m.Unlock()
 	r.store[user.ID] = user

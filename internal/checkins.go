@@ -1,5 +1,7 @@
 package checkin
 
+import "context"
+
 type Location struct {
 	Longitude float32
 	Latitude  float32
@@ -11,8 +13,8 @@ type Venue struct {
 }
 
 type UserRepository interface {
-	GetUser(uid UserID) (*User, error)
-	Store(u *User) error
+	GetUser(ctx context.Context, uid UserID) (*User, error)
+	Store(ctx context.Context, u *User) error
 }
 
 type UserID string

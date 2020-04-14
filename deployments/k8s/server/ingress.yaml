@@ -1,17 +1,15 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1 # for versions before 1.14 use extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ori-ingress
-  namespace: default
+  name: ori-service-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-    backend:
-        serviceName: location-checkin-service
-        servicePort: 8888
-    rules:
-    - host: egw.ei-staff.com
-      http:
-        paths:
-        - path: /*
-          backend:
-            serviceName: nginx-np
-            servicePort: 8000
+  rules:
+  - host: checkin-service.info
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: location-checkin-nodeport-service
+          servicePort: 6666

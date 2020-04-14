@@ -7,3 +7,4 @@ metadata:
 data:
   CIS_DEBUG: "false"
   CIS_GRPC_PORT: "7777"
+  CIS_HTTP_PORT: "6666"

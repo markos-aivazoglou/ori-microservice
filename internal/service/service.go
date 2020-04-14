@@ -1,6 +1,7 @@
 package service
 
 import (
+	"context"
 	"log"
 	checkin "ori/microservice/internal"
 )
@@ -26,8 +27,8 @@ type UserCheckInResult struct {
 	FriendsWith []checkin.UserID
 }
 
-func (c *Checkin) UserCheckIn(d CheckInData) (*UserCheckInResult, error) {
-	user, err := c.userRepository.GetUser(d.UserID)
+func (c *Checkin) UserCheckIn(ctx context.Context, d CheckInData) (*UserCheckInResult, error) {
+	user, err := c.userRepository.GetUser(ctx, d.UserID)
 	if err != nil {
 		return nil, err
 	}
@@ -38,7 +39,7 @@ func (c *Checkin) UserCheckIn(d CheckInData) (*UserCheckInResult, error) {
 			With:  d.Friends,
 		},
 	)
-	err = c.userRepository.Store(user)
+	err = c.userRepository.Store(ctx, user)
 	if err != nil {
 		return nil, err
 	}
@@ -52,8 +53,8 @@ func (c *Checkin) UserCheckIn(d CheckInData) (*UserCheckInResult, error) {
 	return result, nil
 }
 
-func (c *Checkin) GetVenues(uid checkin.UserID) ([]checkin.Venue, error) {
-	user, err := c.userRepository.GetUser(uid)
+func (c *Checkin) GetVenues(ctx context.Context, uid checkin.UserID) ([]checkin.Venue, error) {
+	user, err := c.userRepository.GetUser(ctx, uid)
 	if err != nil {
 		return nil, err
 	}
